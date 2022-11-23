@@ -99,9 +99,105 @@
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
-
     // Start your code here
     // You may move this JS to another file if you wish
+
+    // Test how to get each button's html
+    let btns = document.querySelectorAll("button");
+    console.log(btns[1].innerHTML)
+
+    // Try to vim through each element and add a mouse listener 
+    // and to respond to event when clicked 
+    for (bt of btns) {
+      bt.addEventListener('click', function () {
+
+        // Store each text value 
+        let CL = "Console Log"
+        CE = "Console Error"
+        CCo = "Console Count"
+        CW = "Console Warn"
+        CA = "Console Assert"
+        CCl = "Console Clear"
+        CD = "Console Dir"
+        Cd = "Console dirxml"
+        CGS = "Console Group Start"
+        CGE = "Console Group End"
+        CTa = "Console Table"
+        ST = "Start Timer"
+        ET = "End Timer"
+        CTr = "Console Trace"
+        TAGE = "Trigger a Global Error"
+
+        // Store the button's inner html 
+        let bttext = this.innerHTML;
+
+        // Check which button is pressed and respond to its functionality
+        if (bttext == CL)
+          console.log('This is a log message')
+        if (bttext == CE)
+          console.error('This is an error message')
+        if (bttext == CCo) {
+          console.count("Count")
+        }
+        if (bttext == CW) {
+          console.warn("This is a warning message")
+        }
+        if (bttext == CA) {
+          console.assert(false, "You triggered an error")
+        }
+        if (bttext == CCl) {
+          console.clear()
+        }
+        if (bttext == CD) {
+          console.dir(this)
+        }
+        if (bttext == Cd) {
+          console.dirxml(this)
+        }
+        if (bttext == CGS) {
+          console.group()
+        }
+        if (bttext == CGE) {
+          console.groupEnd()
+        }
+        if (bttext == CTa) {
+          const people = [
+            ["Tyrone", "Jones"],
+            ["Janet", "Smith"],
+            ["Maria", "Cruz"],
+          ];
+          console.table (people)
+        }
+        if (bttext == ST) {
+          console.time ()
+        }
+        if (bttext == ET) {
+          console.timeEnd ()
+        }
+        if (bttext == CTr) {
+          function a1 () {
+            function b2 () {
+              function c3 () {
+                console.trace ()
+              }
+              c3 (); 
+            }
+            b2 (); 
+          }
+          a1 (); 
+        }
+        if (bttext == TAGE) {
+          try {
+            let hello = hello
+          }
+          catch (err) {
+            console.error (err)
+          }
+        }
+      })
+    }
+
+
   </script>
 </body>
 
