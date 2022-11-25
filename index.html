@@ -17,6 +17,7 @@
     }
 
     #first-num,
+    <section id="error-btns">
     #second-num {
       width: 60px;
     }
@@ -68,7 +69,6 @@
       </fieldset>
     </form>
 
-    <section id="error-btns">
       <button>Console Log</button>
       <button>Console Error</button>
       <button>Console Count</button>
@@ -87,7 +87,20 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script>
+
+    // Adding TrackJS Agent 
+
+
+    window.TrackJS && TrackJS.install({ 
+    token: "fd2555505b6842c2a335ffcabee12ab5"
+    // for more configuration options, see https://docs.trackjs.com
+    });
+
+
+
+    // Add functions to simple algorithmic calculation
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -95,8 +108,24 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+
+      // Use try and catch to catch error 
+      try {
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      }
+      catch (err) {
+        throw ("There is a global error caught here")
+        console.error(err)
+      }
+      finally {
+        console.log("The code will continue to run after this")
+      }
     });
+
+    // A global catch error
+    window.addEventListener("error", (err) => {
+      console.error(err)
+    })
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
     // Start your code here
@@ -166,33 +195,28 @@
             ["Janet", "Smith"],
             ["Maria", "Cruz"],
           ];
-          console.table (people)
+          console.table(people)
         }
         if (bttext == ST) {
-          console.time ()
+          console.time()
         }
         if (bttext == ET) {
-          console.timeEnd ()
+          console.timeEnd()
         }
         if (bttext == CTr) {
-          function a1 () {
-            function b2 () {
-              function c3 () {
-                console.trace ()
+          function a1() {
+            function b2() {
+              function c3() {
+                console.trace()
               }
-              c3 (); 
+              c3();
             }
-            b2 (); 
+            b2();
           }
-          a1 (); 
+          a1();
         }
         if (bttext == TAGE) {
-          try {
-            let hello = hello
-          }
-          catch (err) {
-            console.error (err)
-          }
+          let hello = hello
         }
       })
     }
